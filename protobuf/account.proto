@@ -1,0 +1,32 @@
+syntax = 'proto3';
+
+// Params
+package grpc;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+
+option (gogoproto.marshaler_all) = false;
+option (gogoproto.unmarshaler_all) = false;
+option (gogoproto.sizer_all) = false;
+option (gogoproto.goproto_registration) = false;
+option (gogoproto.messagename_all) = false;
+option (gogoproto.protosizer_all) =false;
+
+
+message Empty{
+
+}
+
+message ValidatorOutput {
+	uint64 BlockHeight  = 1 ;       
+    repeated google.protobuf.ListValue  BondedValidators  = 2 [(gogoproto.customtype) = "github.com/gallactic/gallactic/core/validator.Validator", (gogoproto.nullable) = false];
+	repeated google.protobuf.ListValue  UnbondingValidators  = 3 [(gogoproto.customtype) = "github.com/gallactic/gallactic/core/validator.Validator", (gogoproto.nullable) = false];
+}
+
+// Account Service definition
+service Accounts {
+	rpc GetValidators(Empty) returns (ValidatorOutput);
+	
+}
