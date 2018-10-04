@@ -1,5 +1,9 @@
 # Gallacticgrpc
 
+## Installation:
+    git clone repository
+    install grpc and protobuf compiler
+    
 ## Note:
       1.kernal.go which consit of grpc server connection method, To initialize the GRPC server.
       2.ProtoBuf folder which have all the method realted to grpc protobuf
